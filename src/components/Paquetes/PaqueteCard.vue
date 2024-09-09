@@ -3,7 +3,7 @@
         <div class="pCard scale-hover  def-shadow br-radius p-0"
             :style="{ 'background-image': 'url(' + helpers.getImagePath(pack.imagenes[0].url, 'paquetes') + ')' }"
             @click="goToPack(pack.codigo)">
-            <div v-if="pack.oferta != 0"
+            <div v-if="helpers.show_on != 'femer' && pack.oferta != 0"
                 class="absolute top-0 right-0 px-2 py-3 box-primary-border fw-bold rounded-pill"
                 style="line-height: 16px;margin: -12px; z-index: 9999;">
                 10%<br>OFF
@@ -31,12 +31,13 @@ background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);">
                         <p class="mb-0 ffs-1" v-html="pack.descripcion_breve"></p>
                     </div>
                     <div
-                        class="relative bg-white d-flex justify-content-center align-items-center mt-2 py-2 rounded-pill">
+                        class="relative bg-white d-flex justify-content-center align-items-center mt-2 py-1 rounded-pill">
                         <p v-if="pack.precio_final && pack.currency" class="price text-center mb-0"
                             style="line-height: 1.7rem;">
                             <small class="m-auto">Desde</small><br>
-                            <span class="fs-lg fw-bold text-primary fs-3">
-                                {{ helpers.formatPrice(pack.precio_final, pack.currency) }}
+                            <span class="fs-lg fw-bold text-primary fs-4">
+                                <small>{{pack.currency}}</small>
+                                {{ helpers.formatPrice(pack.precio_final) }}
                             </span>
                         </p>
                         <p class=" mb-0 py-2 fw-bold text-center w-100 text-primary"
